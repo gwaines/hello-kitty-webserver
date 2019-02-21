@@ -11,7 +11,7 @@ def get_ip():
 
 @app.route("/")
 def hello():
-    html = "<h3>Hello BIG Kitty {name}!</h3>" \
+    html = "<h3>Hello MONSTER Kitty {name}!</h3>" \
 	   "<b>IP Address:</b> {ipaddr}<br/>" \
 	   "<b>Container :</b> {container}<br/>" \
 	   "<b>Platform  :</b> {plat}<br/>" \
