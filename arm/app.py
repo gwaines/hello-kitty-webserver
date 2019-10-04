@@ -6,8 +6,19 @@ import platform
 app = Flask(__name__)
 
 def get_ip():
-    return socket.gethostbyname(socket.gethostname())
+    # IPv4
+    try:
+        return socket.gethostbyname(socket.gethostname())
+    except:
+        pass
 
+    # IPv6
+    try:
+        return socket.getaddrinfo(socket.gethostname(), None, socket.AF_INET6)[0][4][0]
+    except:
+        pass
+
+    return 'localhost'
 
 @app.route("/")
 def hello():
@@ -21,5 +32,4 @@ def hello():
     return html.format(name=os.getenv("NAME", "world"), ipaddr=get_ip(), container=socket.gethostname(), plat=platform.platform())
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=80)
-
+    app.run(host='::', port=80)
